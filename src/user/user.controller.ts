@@ -34,6 +34,10 @@ export class UsersController {
 //     return this.usersService.remove(id);
 //   }
 
+
+//ParseIntPipe 
+//Pipes transform and validate request data before it reaches the controller
+
   @Get(':id')
 getUser(@Param('id', ParseIntPipe) id: number) {
   return this.usersService.findOne(id);

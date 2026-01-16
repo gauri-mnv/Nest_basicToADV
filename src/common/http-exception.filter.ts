@@ -5,6 +5,8 @@ import {
     HttpException,
   } from '@nestjs/common';
   
+
+  //Exception filters centralize and standardize error responses across the application.
   @Catch(HttpException)
   export class HttpExceptionFilter implements ExceptionFilter {
     catch(exception: HttpException, host: ArgumentsHost) {
