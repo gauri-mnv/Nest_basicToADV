@@ -1,7 +1,12 @@
-### WORKING:
+# NestJS Backend – ORM, Pipes & Migrations Practice
+
+This repository contains a **NestJS backend project** built to practice **clean architecture**, **TypeORM with PostgreSQL**, **migrations**, and **request lifecycle concepts** like pipes and exception filters.
+
+---
+
+## 🔄 Request–Response Flow (Working)
 
 ```
-
 Request
   ↓
 Pipes (transform + validate)
@@ -13,106 +18,114 @@ Service
 Exception Filter (if error)
   ↓
 Response
-
 ```
 
-### In this NestJS project, practised pipes for transformation and validation, DTOs for defining input contracts, and global exception filters to ensure consistent error handling, resulting in clean and stable code.
+**One‑liner:** This flow ensures all incoming requests are validated and transformed before business logic runs, and all errors are handled consistently.
 
-<!-- <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+---
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 🧠 What I Practised in This Project
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+* **Pipes** for request data transformation and validation
+* **DTOs** to define strict input contracts
+* **Global Exception Filters** for centralized error handling
+* **TypeORM** for database interaction
+* **PostgreSQL** as the relational database
+* **Migrations** for safe, version‑controlled schema changes
 
-## Description
+**Result:** Clean, predictable, and production‑ready backend structure.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## 🗄️ Database & Migration Work
+
+### ✅ Migration Created
+
+**One‑liner:** Auto‑generated migration based on entity changes using TypeORM CLI.
+
+![Migration Created](https://i.ibb.co/dRZxHfv/Migration-created.png)
+
+---
+
+### 👀 Migration File View
+
+**One‑liner:** Generated SQL clearly shows table creation, constraints, and relations.
+
+![Migration View](https://i.ibb.co/hFP7nZZQ/migration-view.png)
+
+---
+
+### 🚀 Migration Executed Successfully
+
+**One‑liner:** Migration executed and recorded in the database without errors.
+
+![Migration Run](https://i.ibb.co/cXspMRpn/migration.png)
+
+---
+
+## 🧪 NestJS API Practice
+
+**One‑liner:** Tested API flow with controllers, services, validation pipes, and database integration.
+
+![Nest API Practice](https://i.ibb.co/BV2TRtC5/nest-api-pract.png)
+
+---
+
+## 🛠 Tech Stack
+
+* **Framework:** NestJS
+* **Language:** TypeScript
+* **ORM:** TypeORM
+* **Database:** PostgreSQL
+* **Validation:** class-validator, class-transformer
+* **Configuration:** @nestjs/config
+
+---
+
+## 🚀 Project Setup
 
 ```bash
-$ yarn install
+npm install
 ```
 
-## Compile and run the project
+---
+
+## ▶️ Run the Project
 
 ```bash
 # development
-$ yarn run start
+npm run start
 
 # watch mode
-$ yarn run start:dev
+npm run start:dev
 
-# production mode
-$ yarn run start:prod
+# production
+npm run start:prod
 ```
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ yarn run test
+## 📌 Notes
 
-# e2e tests
-$ yarn run test:e2e
+* Migrations are used instead of `synchronize: true`
+* Testing tools were intentionally excluded to focus on ORM and backend fundamentals
+* Project follows real‑world NestJS best practices
 
-# test coverage
-$ yarn run test:cov
-```
+---
 
-## Deployment
+## 📚 Resources
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+* [NestJS Documentation](https://docs.nestjs.com)
+* [TypeORM Documentation](https://typeorm.io)
+* [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
 
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-```
+## 👩‍💻 Contributor
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+**Gauri Bidwai**
+Associate Software Engineer
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE). -->
+✅ This project demonstrates a solid understanding of backend fundamentals, database design, and NestJS architecture.
