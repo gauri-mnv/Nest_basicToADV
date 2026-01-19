@@ -1,4 +1,6 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException ,OnModuleInit,
+  OnModuleDestroy,
+  BeforeApplicationShutdown,} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
@@ -6,11 +8,33 @@ import { SignupDto } from './dto/signup.dto';
 import { SigninDto } from './dto/signin.dto';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnModuleInit, OnModuleDestroy, BeforeApplicationShutdown{
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
+
+  onModuleInit() {
+    console.log('AuthService initialized');
+
+    // Example: Validate JWT configuration
+    try {
+      this.jwtService.sign({ test: true });
+      console.log('JWT configuration validated');
+    } catch (error) {
+      console.error(' JWT configuration error', error);
+    }
+  }
+
+  //  Runs when AuthModule is destroyed
+  onModuleDestroy() {
+    console.log(' AuthService resources cleaned up');
+  }
+
+  // Runs just before the app shuts down
+  beforeApplicationShutdown(signal: string) {
+    console.log(`AuthService shutting down due to: ${signal}`);
+  }
 
   // Handle user signup with hashed password and JWT token response
   async signup(dto: SignupDto) {

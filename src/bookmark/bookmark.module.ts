@@ -15,12 +15,17 @@ import {AuthModule  } from "../Auth/auth.module";
   exports: [PostService],
 })
 export class BookmarkModule {
-  static register():DynamicModule {
+  static register(enableLogs = false):DynamicModule {
 
     return{
       module :BookmarkModule,
-      providers: [PostService],
-
+      providers: [PostService,
+        {
+          provide: 'ENABLE_LOGS',
+          useValue: enableLogs,
+        },
+      ],
+      exports: [PostService],
     }
   }
 }

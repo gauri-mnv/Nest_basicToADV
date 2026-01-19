@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Post } from './post.entity';
@@ -11,7 +11,14 @@ export class PostService {
     private readonly postRepo: Repository<Post>,
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
-  ) {}
+    @Inject('ENABLE_LOGS') private enableLogs: boolean,
+    ) 
+    {
+      if (this.enableLogs) {
+        console.log('📌 Bookmark logging enabled');
+      }
+    }
+   
 
   async createForUser(userId: number, title: string): Promise<Post> {
     const user = await this.userRepo.findOne({ where: { id: userId } });
