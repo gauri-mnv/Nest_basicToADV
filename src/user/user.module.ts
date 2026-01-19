@@ -5,6 +5,7 @@ import { User } from './user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '@/Auth/auth.module';
 import { BookmarkModule } from '@/bookmark/bookmark.module';
+import { AuthGuard } from './auth.gaurd';
 
 
 //	Static Modules @Module 
@@ -16,7 +17,7 @@ import { BookmarkModule } from '@/bookmark/bookmark.module';
     BookmarkModule,
   ],
   controllers: [UsersController],
-  providers: [UserService],
+  providers: [UserService, AuthGuard],
   exports: [UserService],
 })
 export class UserModule {}

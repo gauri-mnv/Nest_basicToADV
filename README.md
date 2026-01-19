@@ -1,6 +1,6 @@
-# NestJS Backend – ORM, Pipes & Migrations Practice
+# NestJS Backend – ORM, Auth, Guards & Migrations Practice
 
-This repository contains a **NestJS backend project** built to practice **clean architecture**, **TypeORM with PostgreSQL**, **migrations**, and **request lifecycle concepts** like pipes and exception filters.
+This repository contains a **NestJS backend project** built to practice **clean architecture**, **authentication & authorization**, **TypeORM with PostgreSQL**, **migrations**, and **NestJS request lifecycle concepts** such as pipes, guards, and exception filters.
 
 ---
 
@@ -8,6 +8,8 @@ This repository contains a **NestJS backend project** built to practice **clean 
 
 ```
 Request
+  ↓
+Guards (Auth / JWT validation)
   ↓
 Pipes (transform + validate)
   ↓
@@ -20,24 +22,48 @@ Exception Filter (if error)
 Response
 ```
 
-**One‑liner:** This flow ensures all incoming requests are validated and transformed before business logic runs, and all errors are handled consistently.
+**One‑liner:** Requests are first authorized using Guards, then validated via Pipes, processed by services, and errors are handled centrally for consistent responses.
 
 ---
 
 ## 🧠 What I Practised in This Project
 
-* **Pipes** for request data transformation and validation
-* **DTOs** to define strict input contracts
-* **Global Exception Filters** for centralized error handling
-* **TypeORM** for database interaction
-* **PostgreSQL** as the relational database
-* **Migrations** for safe, version‑controlled schema changes
+### 🔐 Authentication & Authorization
 
-**Result:** Clean, predictable, and production‑ready backend structure.
+* User **Signup & Signin** flow using email and password
+* **Password hashing** using bcrypt
+* **JWT token generation** on successful login
+* **Custom AuthGuard** to protect routes
+* Understanding **dependency injection** issues and module boundaries
+
+**One‑liner:** Implemented a real‑world authentication flow using JWT and NestJS Guards.
 
 ---
 
-## 🗄️ Database & Migration Work
+### 🧩 NestJS Core Concepts
+
+* **Controllers & Services** with clean separation of concerns
+* **DTOs** for strict request contracts
+* **Pipes** for validation and transformation
+* **Global Exception Filters** for centralized error handling
+* **Guards** for request authorization
+
+**One‑liner:** Applied NestJS fundamentals to build scalable and maintainable backend modules.
+
+---
+
+### 🗄️ Database & ORM (TypeORM)
+
+* **User & Post entities** with proper relations
+* **PostgreSQL** as relational database
+* **Repository pattern** via TypeORM
+* **Unique constraints** and column validation
+
+**One‑liner:** Designed relational schemas and managed data using TypeORM best practices.
+
+---
+
+## 🧱 Migrations Practice
 
 ### ✅ Migration Created
 
@@ -63,9 +89,13 @@ Response
 
 ---
 
-## 🧪 NestJS API Practice
+## 🧪 API Testing (Postman)
 
-**One‑liner:** Tested API flow with controllers, services, validation pipes, and database integration.
+* Tested **/auth/signup** and **/auth/signin** endpoints
+* Verified JWT token generation
+* Used JWT token to access protected routes
+
+**One‑liner:** End‑to‑end API testing confirms authentication, validation, and DB integration.
 
 ![Nest API Practice](https://i.ibb.co/BV2TRtC5/nest-api-pract.png)
 
@@ -77,6 +107,7 @@ Response
 * **Language:** TypeScript
 * **ORM:** TypeORM
 * **Database:** PostgreSQL
+* **Auth:** JWT, bcrypt
 * **Validation:** class-validator, class-transformer
 * **Configuration:** @nestjs/config
 
@@ -108,8 +139,8 @@ npm run start:prod
 ## 📌 Notes
 
 * Migrations are used instead of `synchronize: true`
-* Testing tools were intentionally excluded to focus on ORM and backend fundamentals
-* Project follows real‑world NestJS best practices
+* JWT Guard replaces hardcoded API‑key based authorization
+* Focused on backend fundamentals and real‑world NestJS patterns
 
 ---
 
@@ -128,4 +159,4 @@ Associate Software Engineer
 
 ---
 
-✅ This project demonstrates a solid understanding of backend fundamentals, database design, and NestJS architecture.
+ My hands‑on practice with authentication, authorization, database design, and core NestJS architecture.

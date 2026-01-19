@@ -11,8 +11,8 @@ import { UserModule } from '@/user/user.module';
     imports: [
         TypeOrmModule.forFeature([User]),
         JwtModule.register({
-          secret: 'JWT_SECRET_KEY',
-          signOptions: { expiresIn: '1h' },
+          secret: process.env.JWT_SECRET || 'secret',
+          signOptions: { expiresIn: '1w' },
         }),
         forwardRef(() => UserModule),
       ],

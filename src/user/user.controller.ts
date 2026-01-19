@@ -9,6 +9,8 @@ import { UserGaurd } from './user.guard';
 @Controller('user')
 // @UseGuards(new AuthGuard()) if I will add this guard here then it will work for all the routes
 export class UsersController {
+
+  //we are using injectable in user.service
   constructor(private readonly usersService: UserService) {}
 
   @Post('signup')
