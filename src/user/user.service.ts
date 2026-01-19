@@ -1,63 +1,28 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import{InjectRepository} from "@nestjs/typeorm";
-// import { User} from "./user.interface"; 1
-
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-//after introducing ORM to my code ...new data tables in relationship
+import * as bcrypt from 'bcrypt';
 import { User } from './user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
-  // private users: User[] = [];
-
-  //now...
-  //NestJS needs a constructor to know:what to inject ,where to inject it
   constructor(
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
   ) {}
-// Repository<User> is created by TypeORM
 
-  // create(dto: CreateUserDto): User {
-  //   const user: User = {
-  //     id: this.users.length + 1,
-  //     ...dto,
-  //   };
+  // Find user by email (used for signin)
+  async findByEmail(email: string): Promise<User | null> {
+    return this.userRepo.findOne({ where: { email } });
+  }
 
-  //   this.users.push(user);
-  //   return user;
-  // }
-
-  // findAll(): User[] {
-  //   return this.users;
-  // }
-
-  // findOne(id: number): User {
-  //   const user = this.users.find(u => u.id === id);
-  //   if (!user) {
-  //     throw new NotFoundException('User not found');
-  //   }
-  //   return user;
-  // }
-
-  // update(id: number, data: Partial<CreateUserDto>): User {
-  //   const user = this.findOne(id);
-  //   Object.assign(user, data);
-  //   return user;
-  // }
-
-  // remove(id: number): User {
-  //   const user = this.findOne(id);
-  //   this.users = this.users.filter(u => u.id !== id);
-  //   return user;
-  // }
-
-
-  // update now adding async to function and promice as database is async and returning promice
-
+  // Create a new user with hashed password
   async create(dto: CreateUserDto): Promise<User> {
-    const user = this.userRepo.create(dto);
+    const user = this.userRepo.create(dto as unknown as User);
+    if ((dto as any).password) {
+      user.password = await bcrypt.hash((dto as any).password, 10);
+    }
     return this.userRepo.save(user);
   }
 
@@ -94,3 +59,4 @@ export class UserService {
     return user;
   }
 }
+

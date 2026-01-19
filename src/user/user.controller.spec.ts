@@ -6,13 +6,13 @@ describe('UserController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [UserController],
+      controllers: [controller],
     }).compile();
 
-    controller = module.get<UserController>(UserController);
+    controller = module.get<UsersController>(controller);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-});
+});TInput extends UsersController = any

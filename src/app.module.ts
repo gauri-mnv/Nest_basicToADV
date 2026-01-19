@@ -13,7 +13,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   [     // 1️⃣ Environment variables
     
     ConfigModule.forRoot({
-    isGlobal: true, // 👈 important
+    isGlobal: true,
   }),
    // 2️⃣ Database connection
    TypeOrmModule.forRootAsync({
@@ -26,8 +26,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       username: config.get('DB_USER'),
       password: config.get('DB_PASSWORD'),
       database: config.get('DB_NAME'),
-      entities: [User, Post],
-      synchronize: false,
+     entities: [User, Post],
+      //autoLoadEntities: true, 
+      synchronize: true,
     }),
   }),
 
